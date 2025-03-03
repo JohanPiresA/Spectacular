@@ -1,24 +1,31 @@
-name: CI angular
+name: CI Angular
+
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
 
 jobs:
   build:
-    steps:
-      - uses: actions/checkout@v4
+    runs-on: ubuntu-latest
 
-      - name: Use Node.js
-        uses: actions/setup-node@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: "20.x"
+          node-version: 18.x
 
       - name: Install dependencies
         run: npm ci
 
-      - name: Run tests (headless)
-        run: npm test -- --browsers ChromeHeadless --single-run
+      - name: Run tests
+        run: npm test
 
-      - name: Run build
-        run: npm run build --if-present
+      - name: Build Angular app
+        run: npm run build
