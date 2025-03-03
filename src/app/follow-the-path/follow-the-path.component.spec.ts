@@ -36,3 +36,4 @@ describe('FollowThePathComponent', () => {
     expect(homeLink).toBeTruthy();
   });
 })
+
