@@ -1,4 +1,8 @@
-runs-on: ubuntu-latest
+name: CI angular
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   build:
